@@ -280,26 +280,6 @@ export default class Rabbit extends THREE.Group {
 			this.earR.rotation.x = Math.cos(-Math.PI)
 			this.body.position.setY(this.body.position.y + jumpHeight);
 
-
-
-			
-			// TweenMax.to(this.earL.rotation, totalSpeed, {x:"+=.3", ease:Back.easeOut});
-			// TweenMax.to(this.earR.rotation, totalSpeed, {x:"-=.3", ease:Back.easeOut});
-			
-			// TweenMax.to(this.pawFL.rotation, totalSpeed, {x:"+=.7", ease:Back.easeOut});
-			// TweenMax.to(this.pawFR.rotation, totalSpeed, {x:"-=.7", ease:Back.easeOut});
-			// TweenMax.to(this.pawBL.rotation, totalSpeed, {x:"+=.7", ease:Back.easeOut});
-			// TweenMax.to(this.pawBR.rotation, totalSpeed, {x:"-=.7", ease:Back.easeOut});
-			
-			// TweenMax.to(this.tail.rotation, totalSpeed, {x:"+=1", ease:Back.easeOut});
-			
-			// TweenMax.to(this.mouth.rotation, totalSpeed, {x:.5, ease:Back.easeOut});
-			
-			// TweenMax.to(this.body.position, totalSpeed/2, {y:jumpHeight, ease:Power2.easeOut});
-			// TweenMax.to(this.body.position, totalSpeed/2, {y:0, ease:Power4.easeIn, delay:totalSpeed/2, onComplete: function(){
-			//   //t = 0;
-			//   this.status="running";
-			// }});
 			
 		  }
 	}

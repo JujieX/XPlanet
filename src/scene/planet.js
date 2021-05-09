@@ -1,4 +1,5 @@
-import {animateBiomes, applyBiomes, materials, oceanMaterial} from './biomes';
+import { animateBiomes, applyBiomes, materials, oceanMaterial } from './biomes';
+import { Trunc, Tree } from "./models"
 import * as THREE from "three";
 
 const ImprovedNoise = function (x, y, z) {
@@ -70,7 +71,6 @@ const ImprovedNoise = function (x, y, z) {
 	return getNoise(x, y, z);
 };
 
-
 export default class Planet extends THREE.Mesh {
     constructor({
         radius,
@@ -78,24 +78,49 @@ export default class Planet extends THREE.Mesh {
         heightSegments,
         ...noiseProps
     }) {
-        // const geometry = new NoiseSphereGeometry(radius, widthSegments, heightSegments, noiseProps),
-        //     // biomes = applyBiomes(geometry),
-        //     oceanGeometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments);
-        //     // ocean = new THREE.Mesh(oceanGeometry, oceanMaterial);
-		//
-        // super(geometry, materials);
-        // // this.add(...biomes, ocean);
+        const geometry = new NoiseSphereGeometry(radius, widthSegments, heightSegments, noiseProps).toNonIndexed(),
+            biomes = applyBiomes(geometry,widthSegments,heightSegments);
 
-		const geometry = new NoiseSphereGeometry(radius, widthSegments, heightSegments, noiseProps);
-		const texture = new THREE.MeshPhongMaterial({color: 0x7abf8e,shininess:0});
-		super(geometry, texture);
-		// this.animate = animateBiomes;
+        const oceanGeometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments),
+            ocean = new THREE.Mesh(oceanGeometry, oceanMaterial);
+
+        super(geometry, materials);
+        this.add(biomes,ocean);
+
+		this.animate = animateBiomes;
+
+		
+		let nTrees = 5;
+		for(let i = 0; i < nTrees; i++){
+			let phi = i * (Math.PI * 2) / nTrees;
+			for(let j=0; j< nTrees; j++){
+			let theta = j* Math.PI*2 / nTrees;
+			theta += .25 + Math.random()*.3;
+	
+			let trunc = new Trunc(
+			1 + Math.random() * 1,
+			3 + Math.random() * 1,
+			25 + Math.random() * 25,
+			3,
+			3
+			);
+			let fir = new Tree(trunc);
+			fir.position.x = Math.sin(theta) * Math.cos(phi) * radius;
+			fir.position.y = Math.sin(theta) * Math.sin(phi) * (radius-10);
+			fir.position.z = Math.cos(theta) * radius;
+	
+			let vec = fir.position.clone();
+			let axis = new THREE.Vector3(0, 1, 0);
+			fir.quaternion.setFromUnitVectors(axis, vec.clone().normalize());
+			
+			this.add(fir);
+		}
+		}
+		  
+		
     }
 }
 
-
-
-//针对每个点 获得noise 找到noise的最大值
 class NoiseSphereGeometry extends THREE.SphereGeometry {
     constructor(radius, widthSegments, heightSegments, {seed, noiseWidth, noiseHeight}) {
         super(radius, widthSegments, heightSegments);
@@ -118,7 +143,6 @@ class NoiseSphereGeometry extends THREE.SphereGeometry {
 		}
 		noiseMax = Math.max(...noise);
 		noiseMin = -Math.min(...noise);
-		console.log(noiseMax,noiseMin);
 
 		let elevation;
 		for ( let i = 0, l = positions.count; i < l; i ++ ) {

@@ -95,7 +95,7 @@ export default class App extends Component{
          && this.state.pointerLock 
              ?<Scene/>
              :<div className="App-interface">
-             <span>Battle Royale</span>
+             <span>Jump</span>
              {instructions}
          </div>;
 

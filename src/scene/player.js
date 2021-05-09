@@ -1,5 +1,5 @@
 import * as THREE from "three";
-import Rabbit from "./rabbit";
+import {Rabbit, Fish, Hero} from "./hero";
 
 class PlayerCamera extends THREE.Object3D {
     // Third Person Camera
@@ -8,9 +8,7 @@ class PlayerCamera extends THREE.Object3D {
         far,
         fov
     }, height) {
-        const camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 1, far),
-            PI_2 = Math.PI / 2;
-
+        const camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 1, far);
         super();
 
         camera.translateZ(distance);
@@ -20,8 +18,8 @@ class PlayerCamera extends THREE.Object3D {
 
         this.getPerspectiveCamera = () => camera;
         this.rotateVertically = (radX) => {
-            const min = Math.min(PI_2, this.rotation.x + radX);
-            this.rotation.x = Math.max(-PI_2, min);
+            const min = Math.min(Math.PI / 2, this.rotation.x + radX);
+            this.rotation.x = Math.max(-Math.PI / 2, min);
         };
     }
 }
@@ -34,7 +32,7 @@ class PlayerSubject extends THREE.Mesh {
     }) {
         super();
         // Add rabbit as the player
-        this.model = new Rabbit();
+        this.model = new Hero();
         this.model.scale.set(0.2, 0.2, 0.2);  // scale the rabbit to have a best model size. Better to adjust the model size in Rabbit class.
         this.model.rotateY(Math.PI*0.8)
         this.add(this.model);
@@ -98,8 +96,8 @@ export default class PlayerControls extends THREE.Object3D {
                 
             }
             // Apply Rotation
-            this.rotateX(velocity.z * Math.PI / noiseSphere.geometry.parameters.radius);
-            this.rotateZ(velocity.x * Math.PI / noiseSphere.geometry.parameters.radius);
+            this.rotateX(velocity.z * Math.PI / 128);
+            this.rotateZ(velocity.x * Math.PI / 128);
             // Intersection Altitude
             mesh.getWorldPosition(raycaster.ray.origin);
             raycaster

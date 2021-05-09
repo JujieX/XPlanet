@@ -1,16 +1,6 @@
 import * as THREE from "three";
 import * as chroma from "chroma-js";
 
-
-// class Lights extends THREE.Object3D{
-//     constructor(
-//     ) {
-//         super();
-//         const   globalLight = new THREE.AmbientLight(0xffffff, .9);
-
-//         this.add(globalLight);
-//     }
-// }
 const   moonColor = 0xE8EAF6,
         sunColor = 0xFFF8E1,
         dayColor = 0x90CAF9,

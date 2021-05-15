@@ -4,6 +4,8 @@ import Lights from './scene/lights';
 import Planet from './scene/planet';
 import PlayerControls from './scene/player';
 import PropTypes from 'prop-types';
+import {Rabbit, Fish, Hero} from "./scene/hero";
+
 
 
 import * as THREE from "three";
@@ -15,22 +17,18 @@ import { SSAOPass } from 'three/examples/jsm/postprocessing/SSAOPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { AfterimagePass } from 'three/examples/jsm/postprocessing/AfterimagePass.js';
 
-
-
-import { RGBShiftShader } from 'three/examples/jsm/shaders/RGBShiftShader.js';
-import { DotScreenShader } from 'three/examples/jsm/shaders/DotScreenShader.js';
 import { PixelShader } from 'three/examples/jsm/shaders/PixelShader.js';
 
 
 import { GUI } from 'three/examples/jsm/libs/dat.gui.module.js';
 
-const params = {
+export const params = {
     Rabbit: false,
     Snake: false,
     Fish : false
 };
 
-export default class Scene extends Component {
+export class Scene extends Component {
 
     constructor(props) {
         super(props);
@@ -50,6 +48,11 @@ export default class Scene extends Component {
         // player
         const player = new PlayerControls(this.props.player);
         scene.add(player);
+        console.log(scene.children[1].children[0].children[0])
+       
+
+
+        // console.log();
 
         // fog and lights
         scene.fog = new THREE.Fog();
@@ -119,17 +122,20 @@ export default class Scene extends Component {
             this.animationFrame = requestAnimationFrame(this.animate);
             
             if ( params.Rabbit ) {
-                composerR.render()
+                composerR.render()        
+                
             }
             if ( params.Snake ) {
                 composerS.render()
+                scene.children[1].children[0].remove(scene.children[1].children[0].children[0]);
+                console.log(scene.children[1].children[0])
+                scene.children[1].children[0].add(new Hero());
             }
             if ( params.Fish ) {
                 composerF.render()
             }
             
         };
-
     }
 
     componentDidMount(){

@@ -223,207 +223,207 @@ export  class Rabbit extends THREE.Group {
 	}
 }
 
-export class Fish extends THREE.Group {
-	constructor(){
-		super();
+// export class Fish extends THREE.Group {
+// 	constructor(){
+// 		super();
 
-		this.fish = new THREE.Group();
-		this.add(this.fish);
+// 		this.fish = new THREE.Group();
+// 		this.add(this.fish);
 
-		let fishFastColor = {r:255, g:0, b:224}; // pastel blue
-		let fishSlowColor = {r:0, g:207, b:255}; // purple
-    	let angleFin = 0;
-		let speed = new THREE.Vector2;
-		let smoothing = 10;
-		this.fish.scale.set(0.05, 0.05, 0.05);//鱼太大了
+// 		let fishFastColor = {r:255, g:0, b:224}; // pastel blue
+// 		let fishSlowColor = {r:0, g:207, b:255}; // purple
+//     	let angleFin = 0;
+// 		let speed = new THREE.Vector2;
+// 		let smoothing = 10;
+// 		this.fish.scale.set(0.05, 0.05, 0.05);//鱼太大了
 	
-	// Body 
-	let bodyGeom = new THREE.BoxGeometry(120, 120, 120);
-	let bodyMat = new THREE.MeshLambertMaterial({
-	   color: 0x80f5fe ,
-	   shading: THREE.FlatShading
-	 });
-	 this.bodyFish = new THREE.Mesh(bodyGeom, bodyMat);
+// 	// Body 
+// 	let bodyGeom = new THREE.BoxGeometry(120, 120, 120);
+// 	let bodyMat = new THREE.MeshLambertMaterial({
+// 	   color: 0x80f5fe ,
+// 	   shading: THREE.FlatShading
+// 	 });
+// 	 this.bodyFish = new THREE.Mesh(bodyGeom, bodyMat);
 	 
-	 // Tail
-	let tailGeom = new THREE.CylinderGeometry(0, 60, 60, 4, false);
-	let tailMat = new THREE.MeshLambertMaterial({
-	   color: 0xff00dc,
-	   shading: THREE.FlatShading
-	 });
+// 	 // Tail
+// 	let tailGeom = new THREE.CylinderGeometry(0, 60, 60, 4, false);
+// 	let tailMat = new THREE.MeshLambertMaterial({
+// 	   color: 0xff00dc,
+// 	   shading: THREE.FlatShading
+// 	 });
 	 
-	 this.tailFish = new THREE.Mesh(tailGeom, tailMat);
-	 this.tailFish.scale.set(.8,1,.1);
-	 this.tailFish.position.x = -60; 
-	 this.tailFish.rotation.z = -Math.PI/2;
+// 	 this.tailFish = new THREE.Mesh(tailGeom, tailMat);
+// 	 this.tailFish.scale.set(.8,1,.1);
+// 	 this.tailFish.position.x = -60; 
+// 	 this.tailFish.rotation.z = -Math.PI/2;
 	 
-	 // Lips
-	 let lipsGeom = new THREE.BoxGeometry(25, 10, 120);
-	 let lipsMat = new THREE.MeshLambertMaterial({
-	   color: 0x80f5fe ,
-	   shading: THREE.FlatShading
-	 });
-	 this.lipsFish = new THREE.Mesh(lipsGeom, lipsMat);
-	 this.lipsFish.position.x = 65;
-	 this.lipsFish.position.y = -47;
-	 this.lipsFish.rotation.z = Math.PI/2;
+// 	 // Lips
+// 	 let lipsGeom = new THREE.BoxGeometry(25, 10, 120);
+// 	 let lipsMat = new THREE.MeshLambertMaterial({
+// 	   color: 0x80f5fe ,
+// 	   shading: THREE.FlatShading
+// 	 });
+// 	 this.lipsFish = new THREE.Mesh(lipsGeom, lipsMat);
+// 	 this.lipsFish.position.x = 65;
+// 	 this.lipsFish.position.y = -47;
+// 	 this.lipsFish.rotation.z = Math.PI/2;
 	 
-	 // Fins
-	 this.topFish = new THREE.Mesh(tailGeom, tailMat);
-	 this.topFish.scale.set(.8,1,.1);
-	 this.topFish.position.x = -20; 
-	 this.topFish.position.y = 60; 
-	 this.topFish.rotation.z = -Math.PI/2;
+// 	 // Fins
+// 	 this.topFish = new THREE.Mesh(tailGeom, tailMat);
+// 	 this.topFish.scale.set(.8,1,.1);
+// 	 this.topFish.position.x = -20; 
+// 	 this.topFish.position.y = 60; 
+// 	 this.topFish.rotation.z = -Math.PI/2;
 	 
-	 this.sideRightFish = new THREE.Mesh(tailGeom, tailMat);
-	 this.sideRightFish.scale.set(.8,1,.1);
-	 this.sideRightFish.rotation.x = Math.PI/2;
-	 this.sideRightFish.rotation.z = -Math.PI/2;
-	 this.sideRightFish.position.x = 0; 
-	 this.sideRightFish.position.y = -50; 
-	 this.sideRightFish.position.z = -60; 
+// 	 this.sideRightFish = new THREE.Mesh(tailGeom, tailMat);
+// 	 this.sideRightFish.scale.set(.8,1,.1);
+// 	 this.sideRightFish.rotation.x = Math.PI/2;
+// 	 this.sideRightFish.rotation.z = -Math.PI/2;
+// 	 this.sideRightFish.position.x = 0; 
+// 	 this.sideRightFish.position.y = -50; 
+// 	 this.sideRightFish.position.z = -60; 
 	 
-	 this.sideLeftFish = new THREE.Mesh(tailGeom, tailMat);
-	 this.sideLeftFish.scale.set(.8,1,.1);
-	 this.sideLeftFish.rotation.x = Math.PI/2;
-	 this.sideLeftFish.rotation.z = -Math.PI/2;
-	 this.sideLeftFish.position.x = 0; 
-	 this.sideLeftFish.position.y = -50; 
-	 this.sideLeftFish.position.z = 60; 
+// 	 this.sideLeftFish = new THREE.Mesh(tailGeom, tailMat);
+// 	 this.sideLeftFish.scale.set(.8,1,.1);
+// 	 this.sideLeftFish.rotation.x = Math.PI/2;
+// 	 this.sideLeftFish.rotation.z = -Math.PI/2;
+// 	 this.sideLeftFish.position.x = 0; 
+// 	 this.sideLeftFish.position.y = -50; 
+// 	 this.sideLeftFish.position.z = 60; 
 	 
-	 // Eyes
-	 let eyeGeom = new THREE.BoxGeometry(40, 40,5);
-	 let eyeMat = new THREE.MeshLambertMaterial({
-	   color: 0xffffff,
-	   shading: THREE.FlatShading
-	 });
+// 	 // Eyes
+// 	 let eyeGeom = new THREE.BoxGeometry(40, 40,5);
+// 	 let eyeMat = new THREE.MeshLambertMaterial({
+// 	   color: 0xffffff,
+// 	   shading: THREE.FlatShading
+// 	 });
 	 
-	 this.rightEye = new THREE.Mesh(eyeGeom,eyeMat );
-	 this.rightEye.position.z = -60;
-	 this.rightEye.position.x = 25;
-	 this.rightEye.position.y = -10;
+// 	 this.rightEye = new THREE.Mesh(eyeGeom,eyeMat );
+// 	 this.rightEye.position.z = -60;
+// 	 this.rightEye.position.x = 25;
+// 	 this.rightEye.position.y = -10;
 	 
-	 let irisGeom = new THREE.BoxGeometry(10, 10,3);
-	 let irisMat = new THREE.MeshLambertMaterial({
-	   color: 0x330000,
-	   shading: THREE.FlatShading
-	 });
+// 	 let irisGeom = new THREE.BoxGeometry(10, 10,3);
+// 	 let irisMat = new THREE.MeshLambertMaterial({
+// 	   color: 0x330000,
+// 	   shading: THREE.FlatShading
+// 	 });
 	 
-	 this.rightIris = new THREE.Mesh(irisGeom,irisMat );
-	 this.rightIris.position.z = -65;
-	 this.rightIris.position.x = 35;
-	 this.rightIris.position.y = -10;
+// 	 this.rightIris = new THREE.Mesh(irisGeom,irisMat );
+// 	 this.rightIris.position.z = -65;
+// 	 this.rightIris.position.x = 35;
+// 	 this.rightIris.position.y = -10;
 	 
-	 this.leftEye = new THREE.Mesh(eyeGeom,eyeMat );
-	 this.leftEye.position.z = 60;
-	 this.leftEye.position.x = 25;
-	 this.leftEye.position.y = -10;
+// 	 this.leftEye = new THREE.Mesh(eyeGeom,eyeMat );
+// 	 this.leftEye.position.z = 60;
+// 	 this.leftEye.position.x = 25;
+// 	 this.leftEye.position.y = -10;
 	 
-	 this.leftIris = new THREE.Mesh(irisGeom,irisMat );
-	 this.leftIris.position.z = 65;
-	 this.leftIris.position.x = 35;
-	 this.leftIris.position.y = -10;
+// 	 this.leftIris = new THREE.Mesh(irisGeom,irisMat );
+// 	 this.leftIris.position.z = 65;
+// 	 this.leftIris.position.x = 35;
+// 	 this.leftIris.position.y = -10;
 	   
-	 let toothGeom = new THREE.BoxGeometry(20, 4, 20);
-	 let toothMat = new THREE.MeshLambertMaterial({
-	   color: 0xffffff,
-	   shading: THREE.FlatShading
-	 });
+// 	 let toothGeom = new THREE.BoxGeometry(20, 4, 20);
+// 	 let toothMat = new THREE.MeshLambertMaterial({
+// 	   color: 0xffffff,
+// 	   shading: THREE.FlatShading
+// 	 });
 	 
-	 // Teeth
-	 this.tooth1 = new THREE.Mesh(toothGeom,toothMat);
-	 this.tooth1.position.x = 65;
-	 this.tooth1.position.y = -35;
-	 this.tooth1.position.z = -50;
-	 this.tooth1.rotation.z = Math.PI/2;
-	 this.tooth1.rotation.x = -Math.PI/2;
+// 	 // Teeth
+// 	 this.tooth1 = new THREE.Mesh(toothGeom,toothMat);
+// 	 this.tooth1.position.x = 65;
+// 	 this.tooth1.position.y = -35;
+// 	 this.tooth1.position.z = -50;
+// 	 this.tooth1.rotation.z = Math.PI/2;
+// 	 this.tooth1.rotation.x = -Math.PI/2;
 	 
-	 this.tooth2 = new THREE.Mesh(toothGeom,toothMat);
-	 this.tooth2.position.x = 65;
-	 this.tooth2.position.y = -30;
-	 this.tooth2.position.z = -25;
-	 this.tooth2.rotation.z = Math.PI/2;
-	 this.tooth2.rotation.x = -Math.PI/12;
+// 	 this.tooth2 = new THREE.Mesh(toothGeom,toothMat);
+// 	 this.tooth2.position.x = 65;
+// 	 this.tooth2.position.y = -30;
+// 	 this.tooth2.position.z = -25;
+// 	 this.tooth2.rotation.z = Math.PI/2;
+// 	 this.tooth2.rotation.x = -Math.PI/12;
 	 
-	 this.tooth3 = new THREE.Mesh(toothGeom,toothMat);
-	 this.tooth3.position.x = 65;
-	 this.tooth3.position.y = -25;
-	 this.tooth3.position.z = 0;
-	 this.tooth3.rotation.z = Math.PI/2;
+// 	 this.tooth3 = new THREE.Mesh(toothGeom,toothMat);
+// 	 this.tooth3.position.x = 65;
+// 	 this.tooth3.position.y = -25;
+// 	 this.tooth3.position.z = 0;
+// 	 this.tooth3.rotation.z = Math.PI/2;
 	 
-	 this.tooth4 = new THREE.Mesh(toothGeom,toothMat);
-	 this.tooth4.position.x = 65;
-	 this.tooth4.position.y = -30;
-	 this.tooth4.position.z = 25;
-	 this.tooth4.rotation.z = Math.PI/2;
-	 this.tooth4.rotation.x = Math.PI/12;
+// 	 this.tooth4 = new THREE.Mesh(toothGeom,toothMat);
+// 	 this.tooth4.position.x = 65;
+// 	 this.tooth4.position.y = -30;
+// 	 this.tooth4.position.z = 25;
+// 	 this.tooth4.rotation.z = Math.PI/2;
+// 	 this.tooth4.rotation.x = Math.PI/12;
 	 
-	 this.tooth5 = new THREE.Mesh(toothGeom,toothMat);
-	 this.tooth5.position.x = 65;
-	 this.tooth5.position.y = -35;
-	 this.tooth5.position.z = 50;
-	 this.tooth5.rotation.z = Math.PI/2;
-	 this.tooth5.rotation.x = Math.PI/8;
+// 	 this.tooth5 = new THREE.Mesh(toothGeom,toothMat);
+// 	 this.tooth5.position.x = 65;
+// 	 this.tooth5.position.y = -35;
+// 	 this.tooth5.position.z = 50;
+// 	 this.tooth5.rotation.z = Math.PI/2;
+// 	 this.tooth5.rotation.x = Math.PI/8;
 	 
 	 
-	 this.fish.add(this.bodyFish,this.tailFish,this.topFish,this.sideRightFish,this.sideLeftFish,this.rightEye,this.rightIris,this.leftEye,this.leftIris,this.lipsFish,
-					this.tooth1,this.tooth2,this.tooth3,this.tooth4,this.tooth5);
-	 this.fish.rotation.y = -Math.PI/4;
-	 this.fish.rotation.y = -Math.PI/4;
+// 	 this.fish.add(this.bodyFish,this.tailFish,this.topFish,this.sideRightFish,this.sideLeftFish,this.rightEye,this.rightIris,this.leftEye,this.leftIris,this.lipsFish,
+// 					this.tooth1,this.tooth2,this.tooth3,this.tooth4,this.tooth5);
+// 	 this.fish.rotation.y = -Math.PI/4;
+// 	 this.fish.rotation.y = -Math.PI/4;
 
 
-	 this.run = (delta)=>{
+// 	 this.run = (delta)=>{
 
-		speed.x = velocity.x;
-		speed.y = velocity.z;
+// 		speed.x = velocity.x;
+// 		speed.y = velocity.z;
 
-		// make the fish swing according to the mouse direction
-		this.fish.rotation.z += ((-speed.y/50)-this.fish.rotation.z)/smoothing;
-		this.fish.rotation.x += ((-speed.y/50)-this.fish.rotation.x)/smoothing;
-		this.fish.rotation.y += ((-speed.y/50)-this.fish.rotation.y)/smoothing;
+// 		// make the fish swing according to the mouse direction
+// 		this.fish.rotation.z += ((-speed.y/50)-this.fish.rotation.z)/smoothing;
+// 		this.fish.rotation.x += ((-speed.y/50)-this.fish.rotation.x)/smoothing;
+// 		this.fish.rotation.y += ((-speed.y/50)-this.fish.rotation.y)/smoothing;
 		
-		// make the fish move according to the mouse direction
-		this.fish.position.x += (((speed.x)) - this.fish.position.x) / smoothing;
-		this.fish.position.y += ((-speed.y*10)-this.fish.position.y)/smoothing;
+// 		// make the fish move according to the mouse direction
+// 		this.fish.position.x += (((speed.x)) - this.fish.position.x) / smoothing;
+// 		this.fish.position.y += ((-speed.y*10)-this.fish.position.y)/smoothing;
 		
-		// make the eyes follow the mouse direction
-		this.rightEye.rotation.z = this.leftEye.rotation.z = -speed.y/150;
-		this.rightIris.position.x = this.leftIris.position.y = -10 - speed.y/2;
+// 		// make the eyes follow the mouse direction
+// 		this.rightEye.rotation.z = this.leftEye.rotation.z = -speed.y/150;
+// 		this.rightIris.position.x = this.leftIris.position.y = -10 - speed.y/2;
 		
-		// make it look angry when the speed increases by narrowing the eyes
-		this.rightEye.scale.set(1,1-(speed.x/150),1);
-		this.leftEye.scale.set(1,1-(speed.x/150),1);
+// 		// make it look angry when the speed increases by narrowing the eyes
+// 		this.rightEye.scale.set(1,1-(speed.x/150),1);
+// 		this.leftEye.scale.set(1,1-(speed.x/150),1);
 		
-		// in order to optimize, I precalculate a smaller speed values depending on speed.x
-		// these variables will be used to update the wagging of the tail, the color of the fish and the scale of the fish
-		const s2 = speed.x/100; // used for the wagging speed and color 
-		const s3 = speed.x/300; // used for the scale
+// 		// in order to optimize, I precalculate a smaller speed values depending on speed.x
+// 		// these variables will be used to update the wagging of the tail, the color of the fish and the scale of the fish
+// 		const s2 = speed.x/100; // used for the wagging speed and color 
+// 		const s3 = speed.x/300; // used for the scale
 		
-		// I use an angle that I increment, and then use its cosine and sine to make the tail wag in a cyclic movement. The speed of the wagging depends on the global speed
-		angleFin += s2;
-		// for a better optimization, precalculate sine and cosines
-		const backTailCycle = Math.cos(angleFin); 
-		const sideFinsCycle = Math.sin(angleFin/5);
+// 		// I use an angle that I increment, and then use its cosine and sine to make the tail wag in a cyclic movement. The speed of the wagging depends on the global speed
+// 		angleFin += s2;
+// 		// for a better optimization, precalculate sine and cosines
+// 		const backTailCycle = Math.cos(angleFin); 
+// 		const sideFinsCycle = Math.sin(angleFin/5);
 		
-		this.tailFish.rotation.y = backTailCycle*.5;
-		this.topFish.rotation.x = sideFinsCycle*.5;
-		this.sideRightFish.rotation.x = Math.PI/2 + sideFinsCycle*.2;
-		this.sideLeftFish.rotation.x = Math.PI/2 + sideFinsCycle*.2;
+// 		this.tailFish.rotation.y = backTailCycle*.5;
+// 		this.topFish.rotation.x = sideFinsCycle*.5;
+// 		this.sideRightFish.rotation.x = Math.PI/2 + sideFinsCycle*.2;
+// 		this.sideLeftFish.rotation.x = Math.PI/2 + sideFinsCycle*.2;
 		
-		// color update depending on the speed
-		const rvalue = (fishSlowColor.r + (fishFastColor.r - fishSlowColor.r)*s2)/255;
-		const gvalue = (fishSlowColor.g + (fishFastColor.g - fishSlowColor.g)*s2)/255;
-		const bvalue = (fishSlowColor.b + (fishFastColor.b - fishSlowColor.b)*s2)/255;
-		this.bodyFish.material.color.setRGB(rvalue,gvalue,bvalue);
-		this.lipsFish.material.color.setRGB(rvalue,gvalue,bvalue);
+// 		// color update depending on the speed
+// 		const rvalue = (fishSlowColor.r + (fishFastColor.r - fishSlowColor.r)*s2)/255;
+// 		const gvalue = (fishSlowColor.g + (fishFastColor.g - fishSlowColor.g)*s2)/255;
+// 		const bvalue = (fishSlowColor.b + (fishFastColor.b - fishSlowColor.b)*s2)/255;
+// 		this.bodyFish.material.color.setRGB(rvalue,gvalue,bvalue);
+// 		this.lipsFish.material.color.setRGB(rvalue,gvalue,bvalue);
 		
-		//scale update depending on the speed => make the fish struggling to progress
-		this.fish.scale.set(1+s3,1-s3,1-s3);
-	 }
+// 		//scale update depending on the speed => make the fish struggling to progress
+// 		this.fish.scale.set(1+s3,1-s3,1-s3);
+// 	 }
 
 
-	 }
-}
+// 	 }
+// }
 
 export  class Hero extends THREE.Group {
 	constructor(){

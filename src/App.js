@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Scene from './Scene';
+import { Scene } from './Scene';
 
 export default class App extends Component{
     constructor(props) {

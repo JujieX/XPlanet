@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import {Rabbit, Fish, Hero} from "./hero";
 
+
 class PlayerCamera extends THREE.Object3D {
     // Third Person Camera
     constructor({
@@ -28,11 +29,12 @@ class PlayerSubject extends THREE.Mesh {
     constructor({
         height,
         initialY,
+        playerName,
         ...cameraProps
     }) {
         super();
         // Add rabbit as the player
-        this.model = new Hero();
+        this.model = new Rabbit();
         this.model.scale.set(0.2, 0.2, 0.2);  // scale the rabbit to have a best model size. Better to adjust the model size in Rabbit class.
         this.model.rotateY(Math.PI*0.8)
         this.add(this.model);
@@ -156,6 +158,9 @@ export default class PlayerControls extends THREE.Object3D {
                     case 83: // s
                         move.back = true;
                         break;
+                    // case 88: // x
+                    //     playerSwich;
+                    //     break;    
                     default:
                         break;
                 }

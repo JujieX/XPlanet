@@ -79,7 +79,7 @@ export default class Planet extends THREE.Mesh {
         ...noiseProps
     }) {
         const geometry = new NoiseSphereGeometry(radius, widthSegments, heightSegments, noiseProps).toNonIndexed(),
-            biomes = applyBiomes(geometry,widthSegments,heightSegments);
+            biomes = applyBiomes(geometry);
 
         const oceanGeometry = new THREE.SphereGeometry(radius, widthSegments, heightSegments),
             ocean = new THREE.Mesh(oceanGeometry, oceanMaterial);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Scene } from './Scene';
+import FrontPage from './FrontPage';
 
 export default class App extends Component{
     constructor(props) {
@@ -8,10 +9,22 @@ export default class App extends Component{
             pointerLock : 'pointerLockElement' in document || 'mozPointerLockElement' in document || 'webkitPointerLockElement' in document
                 ? false 
                 : null,
-            webgl: false
+            webgl: false,
+            player: {
+                modelName: "Rabbit",
+                directionVelocity: 10,
+                distance: 30,
+                far: 1024,
+                fov: 60,
+                gravity: 9.81 ,
+                height: 1.618,
+                initialY: 256,
+                jumpVelocity: 1,
+                maxGravity: 54 / 2,
+                mouseSpeed: 0.002
+            }
         };
         
-
         this.pointerLockChange = () => {
             this.setState({
                 pointerLock : document.pointerLockElement === this.appRef.current || document.mozPointerLockElement === this.appRef.current || document.webkitPointerLockElement === this.appRef.current
@@ -38,6 +51,31 @@ export default class App extends Component{
             switch (event.keyCode) {
                 case 27:
                     this.exitPointerLock();
+                    break;
+                // switch player model
+                case 49:
+                    this.setState((state, props) => ({
+                        player: {
+                            ...state.player,
+                            modelName: "Rabbit"
+                        }
+                    }));
+                    break;
+                case 50:
+                    this.setState((state, props) => ({
+                        player: {
+                            ...state.player,
+                            modelName: "Hero"
+                        }
+                    }));
+                    break;
+                case 51:
+                    this.setState((state, props) => ({
+                        player: {
+                            ...state.player,
+                            modelName: "Fish"
+                        }
+                    }));
                     break;
                 default:
                     break;
@@ -79,23 +117,16 @@ export default class App extends Component{
         const alerts = [];
         const instructions = this.state.webgl
               ? 
-              <div className = "App-instructions">
-                  <button onClick = 
-                  {this.requestPointerLock}
-                  >Play</button>
-                  <li>W A S D</li>
-                  <li>Move</li>
-                  <li>SPACE</li>
-                  <li>Jump</li>
-                  <li>MOUSE Look Around</li>
+              <div className = "App">
+                  <FrontPage/>
+                  <button onClick = {this.requestPointerLock}>Play</button>
               </div>
                : null;
 
         const content = this.state.webgl 
          && this.state.pointerLock 
-             ?<Scene/>
+             ?<Scene player={this.state.player}/>
              :<div className="App-interface">
-             <span>Jump</span>
              {instructions}
          </div>;
 

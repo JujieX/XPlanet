@@ -27,6 +27,7 @@ class PlayerCamera extends THREE.Object3D {
 
 class PlayerSubject extends THREE.Mesh {
     constructor({
+        modelName,
         height,
         initialY,
         playerName,
@@ -34,9 +35,22 @@ class PlayerSubject extends THREE.Mesh {
     }) {
         super();
         // Add rabbit as the player
-        this.model = new Rabbit();
+        switch (modelName) {
+            case 'Rabbit':
+                this.model = new Rabbit();
+                break;
+            case 'Hero':
+                this.model = new Hero();
+                break;
+            case 'Fish':
+                this.model = new Fish();
+                break;
+            default:
+                this.model = new Rabbit();
+                break;
+        }
         this.model.scale.set(0.2, 0.2, 0.2);  // scale the rabbit to have a best model size. Better to adjust the model size in Rabbit class.
-        this.model.rotateY(Math.PI*0.8)
+        this.model.rotateY(Math.PI*0.8);
         this.add(this.model);
 
         // Add camera

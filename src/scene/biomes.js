@@ -6,27 +6,27 @@ const polarLatitude = Math.sin(3 * Math.PI / 8),
 
 export const materials = [
 
-    new THREE.MeshPhongMaterial({color: 0x37474F, flatShading:THREE.FlatShading}),
+    new THREE.MeshPhongMaterial({color: 0x37474F, flatShading:true}),
 
-	new THREE.MeshPhongMaterial({color: 0x757575,shininess:0,flatShading:THREE.FlatShading}),
-	new THREE.MeshPhongMaterial({color: 0xA3A3A3,shininess:0,flatShading:THREE.FlatShading}),
-	new THREE.MeshPhongMaterial({color: 0xD1D1D1,shininess:0,flatShading:THREE.FlatShading}),
-	new THREE.MeshPhongMaterial({color: 0xFFFFFF,flatShading:THREE.FlatShading}),
+	new THREE.MeshPhongMaterial({color: 0x757575,shininess:0,flatShading:true}),
+	new THREE.MeshPhongMaterial({color: 0xA3A3A3,shininess:0,flatShading:true}),
+	new THREE.MeshPhongMaterial({color: 0xD1D1D1,shininess:0,flatShading:true}),
+	new THREE.MeshPhongMaterial({color: 0xFFFFFF,flatShading:true}),
 
-	new THREE.MeshPhongMaterial({color: 0xA39D8A,flatShading:THREE.FlatShading}),
-    new THREE.MeshPhongMaterial({color: 0xAFB19A,flatShading:THREE.FlatShading}),
-    new THREE.MeshPhongMaterial({color: 0xBAC4AA, flatShading:THREE.FlatShading}),
-	new THREE.MeshPhongMaterial({color: 0xC6D8BA,shininess:0,flatShading:THREE.FlatShading}),
+	new THREE.MeshPhongMaterial({color: 0xA39D8A,flatShading:true}),
+    new THREE.MeshPhongMaterial({color: 0xAFB19A,flatShading:true}),
+    new THREE.MeshPhongMaterial({color: 0xBAC4AA, flatShading:true}),
+	new THREE.MeshPhongMaterial({color: 0xC6D8BA,shininess:0,flatShading:true}),
 
-	new THREE.MeshPhongMaterial({color: 0xD1C49E,shininess:0,flatShading:THREE.FlatShading}),
-	new THREE.MeshPhongMaterial({color: 0xBBBE90,shininess:0,flatShading:THREE.FlatShading}),
-	new THREE.MeshPhongMaterial({color: 0xA4B882,flatShading:THREE.FlatShading}),
-	new THREE.MeshPhongMaterial({color: 0x8EB274,flatShading:THREE.FlatShading}),
+	new THREE.MeshPhongMaterial({color: 0xD1C49E,shininess:0,flatShading:true}),
+	new THREE.MeshPhongMaterial({color: 0xBBBE90,shininess:0,flatShading:true}),
+	new THREE.MeshPhongMaterial({color: 0xA4B882,flatShading:true}),
+	new THREE.MeshPhongMaterial({color: 0x8EB274,flatShading:true}),
 
-    new THREE.MeshPhongMaterial({color: 0xFFECB3,flatShading:THREE.FlatShading}),
-    new THREE.MeshPhongMaterial({color: 0xC6CC87, flatShading:THREE.FlatShading}),
-	new THREE.MeshPhongMaterial({color: 0x8EAB5B,shininess:0,flatShading:THREE.FlatShading}),
-    new THREE.MeshPhongMaterial({color: 0x558B2F,shininess:0,flatShading:THREE.FlatShading})
+    new THREE.MeshPhongMaterial({color: 0xFFECB3,flatShading:true}),
+    new THREE.MeshPhongMaterial({color: 0xC6CC87, flatShading:true}),
+	new THREE.MeshPhongMaterial({color: 0x8EAB5B,shininess:0,flatShading:true}),
+    new THREE.MeshPhongMaterial({color: 0x558B2F,shininess:0,flatShading:true})
 ];
 
 export const applyBiomes = (geometry) => {

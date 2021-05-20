@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { Mat } from "./materials"
 
-export  class Rabbit extends THREE.Group {
+export class Rabbit extends THREE.Group {
 	constructor(){
 		super();
 
@@ -142,6 +142,8 @@ export  class Rabbit extends THREE.Group {
 
 		this.eyeR.position.x = -this.eyeL.position.x;
 		this.head.add(this.eyeR);
+		this.body.scale.set(0.2,0.2,0.2);
+		// this.body.rotateY(Math.PI);
 
 		this.body.traverse(function(object) {
 			if (object instanceof THREE.Mesh) {
@@ -232,16 +234,12 @@ export class Fish extends THREE.Group {
 
 		let fishFastColor = {r:255, g:0, b:224}; // pastel blue
 		let fishSlowColor = {r:0, g:207, b:255}; // purple
-    	let angleFin = 0;
 		let speed = 5;
-		let smoothing = 10;
-		// this.fish.scale.set(0.05, 0.05, 0.05);//鱼太大了
 	
 	// Body 
 	let bodyGeom = new THREE.BoxGeometry(120, 120, 120);
 	let bodyMat = new THREE.MeshLambertMaterial({
 	   color: 0x80f5fe ,
-	   shading: THREE.FlatShading
 	 });
 	 this.bodyFish = new THREE.Mesh(bodyGeom, bodyMat);
 	 this.body.add(this.bodyFish);
@@ -250,7 +248,6 @@ export class Fish extends THREE.Group {
 	let tailGeom = new THREE.CylinderGeometry(0, 60, 60, 4, false);
 	let tailMat = new THREE.MeshLambertMaterial({
 	   color: 0xff00dc,
-	   shading: THREE.FlatShading
 	 });
 	 
 	 this.tailFish = new THREE.Mesh(tailGeom, tailMat);
@@ -262,8 +259,7 @@ export class Fish extends THREE.Group {
 	 // Lips
 	 let lipsGeom = new THREE.BoxGeometry(25, 10, 120);
 	 let lipsMat = new THREE.MeshLambertMaterial({
-	   color: 0x80f5fe ,
-	   shading: THREE.FlatShading
+	   color: 0x80f5fe
 	 });
 	 this.lipsFish = new THREE.Mesh(lipsGeom, lipsMat);
 	 this.lipsFish.position.x = 65;
@@ -299,8 +295,7 @@ export class Fish extends THREE.Group {
 	 // Eyes
 	 let eyeGeom = new THREE.BoxGeometry(40, 40,5);
 	 let eyeMat = new THREE.MeshLambertMaterial({
-	   color: 0xffffff,
-	   shading: THREE.FlatShading
+	   color: 0xffffff
 	 });
 	 
 	 this.rightEye = new THREE.Mesh(eyeGeom,eyeMat );
@@ -310,8 +305,7 @@ export class Fish extends THREE.Group {
 	 
 	 let irisGeom = new THREE.BoxGeometry(10, 10,3);
 	 let irisMat = new THREE.MeshLambertMaterial({
-	   color: 0x330000,
-	   shading: THREE.FlatShading
+	   color: 0x330000
 	 });
 	 
 	 this.rightIris = new THREE.Mesh(irisGeom,irisMat );
@@ -333,8 +327,7 @@ export class Fish extends THREE.Group {
 	   
 	 let toothGeom = new THREE.BoxGeometry(20, 4, 20);
 	 let toothMat = new THREE.MeshLambertMaterial({
-	   color: 0xffffff,
-	   shading: THREE.FlatShading
+	   color: 0xffffff
 	 });
 	 
 	 // Teeth
@@ -376,8 +369,8 @@ export class Fish extends THREE.Group {
 
 	 this.body.rotation.y = -Math.PI/4;
 	 this.body.rotation.y = -Math.PI/4;
-
-	 this.body.position.setY = 1000000;
+	 this.body.scale.set(0.05,0.05,0.05);
+	 this.body.rotateY(Math.PI*0.6);
 
 	 this.body.traverse(function(object) {
 		if (object instanceof THREE.Mesh) {
@@ -386,53 +379,8 @@ export class Fish extends THREE.Group {
 		}
 	});
 
+	
 	 this.run = (delta)=>{
-
-		// speed.x = velocity.x;
-		// speed.y = velocity.z;
-
-		// // make the fish swing according to the mouse direction
-		// this.fish.rotation.z += ((-speed.y/50)-this.fish.rotation.z)/smoothing;
-		// this.fish.rotation.x += ((-speed.y/50)-this.fish.rotation.x)/smoothing;
-		// this.fish.rotation.y += ((-speed.y/50)-this.fish.rotation.y)/smoothing;
-		
-		// // make the fish move according to the mouse direction
-		// this.fish.position.x += (((speed.x)) - this.fish.position.x) / smoothing;
-		// this.fish.position.y += ((-speed.y*10)-this.fish.position.y)/smoothing;
-		
-		// // make the eyes follow the mouse direction
-		// this.rightEye.rotation.z = this.leftEye.rotation.z = -speed.y/150;
-		// this.rightIris.position.x = this.leftIris.position.y = -10 - speed.y/2;
-		
-		// // make it look angry when the speed increases by narrowing the eyes
-		// this.rightEye.scale.set(1,1-(speed.x/150),1);
-		// this.leftEye.scale.set(1,1-(speed.x/150),1);
-		
-		// // in order to optimize, I precalculate a smaller speed values depending on speed.x
-		// // these variables will be used to update the wagging of the tail, the color of the fish and the scale of the fish
-		// const s2 = speed.x/100; // used for the wagging speed and color 
-		// const s3 = speed.x/300; // used for the scale
-		
-		// // I use an angle that I increment, and then use its cosine and sine to make the tail wag in a cyclic movement. The speed of the wagging depends on the global speed
-		// angleFin += s2;
-		// // for a better optimization, precalculate sine and cosines
-		// const backTailCycle = Math.cos(t); 
-		// const sideFinsCycle = Math.sin(t/5);
-		
-		// this.tailFish.rotation.y = backTailCycle*.5;
-		// this.topFish.rotation.x = sideFinsCycle*.5;
-		// this.sideRightFish.rotation.x = Math.PI/2 + sideFinsCycle*.2;
-		// this.sideLeftFish.rotation.x = Math.PI/2 + sideFinsCycle*.2;
-		
-		// // color update depending on the speed
-		// const rvalue = (fishSlowColor.r + (fishFastColor.r - fishSlowColor.r)*s2)/255;
-		// const gvalue = (fishSlowColor.g + (fishFastColor.g - fishSlowColor.g)*s2)/255;
-		// const bvalue = (fishSlowColor.b + (fishFastColor.b - fishSlowColor.b)*s2)/255;
-		// this.bodyFish.material.color.setRGB(rvalue,gvalue,bvalue);
-		// this.lipsFish.material.color.setRGB(rvalue,gvalue,bvalue);
-		
-		// //scale update depending on the speed => make the fish struggling to progress
-		// this.fish.scale.set(1+s3,1-s3,1-s3);
 
 		this.status = "running";
 
@@ -440,7 +388,7 @@ export class Fish extends THREE.Group {
 		this.runningCycle = this.runningCycle % (Math.PI*2);
 		let t = this.runningCycle;
 
-		this.body.position.y = 6+ Math.sin(t - Math.PI/2);//
+		this.body.position.y = 10+ Math.sin(t - Math.PI/2);//
 
 		this.tailFish.rotation.y = Math.cos(t)*.5;
 		this.topFish.rotation.x = Math.sin(t/5)*.5;
@@ -453,19 +401,12 @@ export class Fish extends THREE.Group {
 		this.bodyFish.material.color.setRGB(rvalue,gvalue,bvalue);
 		this.lipsFish.material.color.setRGB(rvalue,gvalue,bvalue);
 
-		const s3 = speed * delta / 5; 
-		this.body.scale.set(1+s3,1-s3,1-s3)
-
-
-
 	 }
 
 	 this.jump = () => {
 		this.status = "jumping";
 		let jumpHeight = 30;
 
-		// this.legL.rotation.x = Math.cos(-Math.PI)
-		// this.legR.rotation.x = Math.cos(-Math.PI)
 		this.body.position.setY(this.body.position.y + jumpHeight);
 	}
 	 }
@@ -518,6 +459,9 @@ export class Hero extends THREE.Group {
 		this.legL.position.z = - this.legR.position.z;
 		this.legL.castShadow = true;
 		this.body.add(this.legL);
+		this.body.scale.set(0.25,0.25,0.25);
+		this.body.rotateY(Math.PI*0.8);
+
 
 		this.run = (delta)=>{
 			this.status = "running";
@@ -534,7 +478,7 @@ export class Hero extends THREE.Group {
 			this.legL.position.x =  Math.cos(t + Math.PI) * amp;
 			this.legL.position.y = Math.max (0, - Math.sin(t + Math.PI) * amp);
 
-			this.body.position.y = 6+ Math.sin(t - Math.PI/2)*amp;//
+			this.body.position.y = 3+ 0.5 * Math.sin(t - Math.PI/2)*amp;//
 			
 			this.torso.position.y = 8 - Math.cos(  t * 2 ) * amp * .2;
 			this.torso.rotation.y = -Math.cos( t + Math.PI ) * amp * .05;

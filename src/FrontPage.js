@@ -8,11 +8,10 @@ export default class FrontPage extends Component {
     }
     roll(){
         // document.querySelector('#a').innerHTML = 'hi'
-        console.log('hi')
+        console.log('Speak, friend, and enter')
     }
     render(){
        return <div className = "Front">
-
                 <div className = "Word">
                   <span>X</span>
                   <span> - </span>
@@ -21,30 +20,14 @@ export default class FrontPage extends Component {
                   <span>a</span>
                   <span>n</span>
                   <span id = 'a' onMouseOver = {this.roll}>e</span>
-                  <span>t</span>
-                  
-
-                  <div className = "vertical-text">
-
-                      <div className = "hero">
-                      <p>h</p>
-                      <p className ="down">ro</p>
-                      </div>
-
-                      <div className = "fish">
-                      <p>f</p>
-                      <p className ="down">ying fish</p>
-                      </div>
-
-                  
+                  <span>t</span>  
                   </div>
-                  </div>
+                <div className = "instructions">
+                    <div>Jump? space</div>
+                    <div>Move? wasd</div>
+                    <div>1-human 2-rabbit 3-fish</div>
+                    </div>  
               </div>
-
-
-            //   hero Rabbit Fish 
-
-            //   X-pla-(Rabbit)ne-(hero)t
         
     }
 }

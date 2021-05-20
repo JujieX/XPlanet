@@ -1,0 +1,9 @@
+#btn {
+    display: block;
+    height: 30px;
+    width: 150px;
+    margin-right: auto;
+    margin-left: auto;
+    background-size: 100%;
+    text-align: center;
+}

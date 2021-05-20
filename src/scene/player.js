@@ -46,11 +46,9 @@ class PlayerSubject extends THREE.Mesh {
                 this.model = new Fish();
                 break;
             default:
-                this.model = new Rabbit();
+                this.model = new Hero();
                 break;
         }
-        this.model.scale.set(0.2, 0.2, 0.2);  // scale the rabbit to have a best model size. Better to adjust the model size in Rabbit class.
-        this.model.rotateY(Math.PI*0.8);
         this.add(this.model);
 
         // Add camera

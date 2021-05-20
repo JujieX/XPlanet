@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Scene } from './Scene';
 import FrontPage from './FrontPage';
+import './App.css';
 
 export default class App extends Component{
     constructor(props) {
@@ -11,7 +12,7 @@ export default class App extends Component{
                 : null,
             webgl: false,
             player: {
-                modelName: "Rabbit",
+                modelName: "Hero",
                 directionVelocity: 10,
                 distance: 30,
                 far: 1024,
@@ -119,7 +120,7 @@ export default class App extends Component{
               ? 
               <div className = "App">
                   <FrontPage/>
-                  <button onClick = {this.requestPointerLock}>Play</button>
+                  <button id = "btn" onClick = {this.requestPointerLock}>Explore</button>
               </div>
                : null;
 

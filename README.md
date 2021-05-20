@@ -4,7 +4,7 @@
 在X-Planet中，玩家可以操控多种动态角色，并以此为第一视角在星球上自由探索。
 
 # Demo
-### [星球入口](https://jujiex.github.io/XPlanet-/)
+### [星球入口](https://jujiex.github.io/XPlanet/)
 
 # 探索指南
 

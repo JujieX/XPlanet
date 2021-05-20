@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/XPlanet/static/css/main.b047ba76.chunk.css",
-    "main.js": "/XPlanet/static/js/main.6260a346.chunk.js",
-    "main.js.map": "/XPlanet/static/js/main.6260a346.chunk.js.map",
+    "main.js": "/XPlanet/static/js/main.fb9bbdb9.chunk.js",
+    "main.js.map": "/XPlanet/static/js/main.fb9bbdb9.chunk.js.map",
     "runtime-main.js": "/XPlanet/static/js/runtime-main.0c76f84a.js",
     "runtime-main.js.map": "/XPlanet/static/js/runtime-main.0c76f84a.js.map",
     "static/js/2.a7e7542e.chunk.js": "/XPlanet/static/js/2.a7e7542e.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.0c76f84a.js",
     "static/js/2.a7e7542e.chunk.js",
     "static/css/main.b047ba76.chunk.css",
-    "static/js/main.6260a346.chunk.js"
+    "static/js/main.fb9bbdb9.chunk.js"
   ]
 }

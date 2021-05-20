@@ -54,7 +54,7 @@ export default class App extends Component{
                     this.exitPointerLock();
                     break;
                 // switch player model
-                case 49:
+                case 50:
                     this.setState((state, props) => ({
                         player: {
                             ...state.player,
@@ -62,7 +62,7 @@ export default class App extends Component{
                         }
                     }));
                     break;
-                case 50:
+                case 49:
                     this.setState((state, props) => ({
                         player: {
                             ...state.player,

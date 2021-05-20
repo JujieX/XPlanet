@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/XPlanet-/static/css/main.fa367cca.chunk.css",
+    "main.js": "/XPlanet-/static/js/main.0f068eb1.chunk.js",
+    "main.js.map": "/XPlanet-/static/js/main.0f068eb1.chunk.js.map",
+    "runtime-main.js": "/XPlanet-/static/js/runtime-main.abadc173.js",
+    "runtime-main.js.map": "/XPlanet-/static/js/runtime-main.abadc173.js.map",
+    "static/js/2.75150200.chunk.js": "/XPlanet-/static/js/2.75150200.chunk.js",
+    "static/js/2.75150200.chunk.js.map": "/XPlanet-/static/js/2.75150200.chunk.js.map",
+    "index.html": "/XPlanet-/index.html",
+    "static/css/main.fa367cca.chunk.css.map": "/XPlanet-/static/css/main.fa367cca.chunk.css.map",
+    "static/js/2.75150200.chunk.js.LICENSE.txt": "/XPlanet-/static/js/2.75150200.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.abadc173.js",
+    "static/js/2.75150200.chunk.js",
+    "static/css/main.fa367cca.chunk.css",
+    "static/js/main.0f068eb1.chunk.js"
+  ]
+}

@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { Mat } from "./materials"
+import { TWEEN } from 'three/examples/jsm/libs/tween.module.min'
 
 export class Rabbit extends THREE.Group {
 	constructor(){
@@ -11,6 +12,8 @@ export class Rabbit extends THREE.Group {
 		this.add(this.body);
 
 		let speed = 6;
+		let totalSpeed = 10 / speed;
+		let jumpHeight = 10;
 
 		let torsoGeom = new THREE.BoxGeometry(7, 7, 10, 1);
 
@@ -143,7 +146,6 @@ export class Rabbit extends THREE.Group {
 		this.eyeR.position.x = -this.eyeL.position.x;
 		this.head.add(this.eyeR);
 		this.body.scale.set(0.2,0.2,0.2);
-		// this.body.rotateY(Math.PI);
 
 		this.body.traverse(function(object) {
 			if (object instanceof THREE.Mesh) {
@@ -162,9 +164,9 @@ export class Rabbit extends THREE.Group {
 			const amp = 4;
 			const disp = .2;
 
-			// BODY
+			// // BODY
 
-			this.body.position.y = 6+ Math.sin(t - Math.PI/2)*amp;
+			this.body.position.y = Math.sin(t - Math.PI/2)*amp;
 			this.body.rotation.x = .2 + Math.sin(t - Math.PI/2)*amp*.1;
 
 			this.torso.rotation.x =  Math.sin(t - Math.PI/2)*amp*.1;
@@ -210,16 +212,25 @@ export class Rabbit extends THREE.Group {
 			this.pawBL.position.y = 1.5 + Math.sin(Math.PI + t)*amp;
 			this.pawBL.rotation.x = Math.cos(t + Math.PI *1.5) * Math.PI/3;
 			this.pawBL.position.z = - Math.cos(Math.PI + t)*amp;
+
+			
 		}
 
 		this.jump = () => {
 			this.status = "jumping";
-			let jumpHeight = 30;
 
-			this.earL.rotation.x = Math.cos(-Math.PI)
-			this.earR.rotation.x = Math.cos(-Math.PI)
-			this.body.position.setY(this.body.position.y + jumpHeight);
+			new TWEEN.Tween(this.earL.rotation).to({x:"+=.3"},totalSpeed).easing(TWEEN.Easing.Back.Out).start();
+			new TWEEN.Tween(this.earR.rotation).to({x:"+=.3"},totalSpeed).easing(TWEEN.Easing.Back.Out).start();
+			new TWEEN.Tween(this.pawFL.rotation).to({x:"+=.7"},totalSpeed).easing(TWEEN.Easing.Back.Out).start();
+			new TWEEN.Tween(this.pawFR.rotation).to({x:"-=.7"},totalSpeed).easing(TWEEN.Easing.Back.Out).start();
+			new TWEEN.Tween(this.pawBL.rotation).to({x:"+=.7"},totalSpeed).easing(TWEEN.Easing.Back.Out).start();
+			new TWEEN.Tween(this.pawBR.rotation).to({x:"-=.7"},totalSpeed).easing(TWEEN.Easing.Back.Out).start();
 
+			new TWEEN.Tween(this.tail.rotation).to({x:"+=1"},totalSpeed).easing(TWEEN.Easing.Back.Out).start();
+			new TWEEN.Tween(this.mouth.rotation).to({x:.5},totalSpeed).easing(TWEEN.Easing.Back.Out).start();
+
+			new TWEEN.Tween(this.body.position).to({y:this.body.position.y+jumpHeight},500).easing(TWEEN.Easing.Elastic.Out).start();
+			new TWEEN.Tween(this.body.position).to({y:'0'},500).delay(500).easing(TWEEN.Easing.Elastic.In).start()
 			
 		  }
 	}
@@ -232,9 +243,9 @@ export class Fish extends THREE.Group {
 		this.body = new THREE.Group();
 		this.add(this.body);
 
-		let fishFastColor = {r:255, g:0, b:224}; // pastel blue
-		let fishSlowColor = {r:0, g:207, b:255}; // purple
-		let speed = 5;
+		let fishFastColor = {r:255, g:225, b:225}; 
+		let fishSlowColor = {r:0, g:0, b:0}; 
+		let speed = 3;
 	
 	// Body 
 	let bodyGeom = new THREE.BoxGeometry(120, 120, 120);
@@ -372,6 +383,7 @@ export class Fish extends THREE.Group {
 	 this.body.scale.set(0.05,0.05,0.05);
 	 this.body.rotateY(Math.PI*0.6);
 
+
 	 this.body.traverse(function(object) {
 		if (object instanceof THREE.Mesh) {
 			object.castShadow = true;
@@ -381,33 +393,39 @@ export class Fish extends THREE.Group {
 
 	
 	 this.run = (delta)=>{
-
 		this.status = "running";
 
 		this.runningCycle += delta * speed * .7;
 		this.runningCycle = this.runningCycle % (Math.PI*2);
 		let t = this.runningCycle;
+		this.body.position.y = 10;
 
-		this.body.position.y = 10+ Math.sin(t - Math.PI/2);//
-
-		this.tailFish.rotation.y = Math.cos(t)*.5;
-		this.topFish.rotation.x = Math.sin(t/5)*.5;
-		this.sideRightFish.rotation.x = Math.PI/2 + Math.sin(t/5)*.2;
-		this.sideLeftFish.rotation.x = Math.PI/2 + Math.sin(t/5)*.2;
+		new TWEEN.Tween(this.tailFish.rotation).to({y:Math.cos(t)*.5},300).easing(TWEEN.Easing.Back.Out).start();
+		new TWEEN.Tween(this.topFish.rotation).to({x:Math.sin(t/5)*.5},300).easing(TWEEN.Easing.Back.Out).start();
+		new TWEEN.Tween(this.sideRightFish.rotation).to({x:Math.PI/2 + Math.sin(t/5)*.2},300).easing(TWEEN.Easing.Back.Out).start();
+		new TWEEN.Tween(this.sideLeftFish.rotation).to({x:Math.PI/2 + Math.sin(t/5)*.2},300).easing(TWEEN.Easing.Back.Out).start();
 
 		const rvalue = (fishSlowColor.r + (fishFastColor.r - fishSlowColor.r)*t/5)/255;
 		const gvalue = (fishSlowColor.g + (fishFastColor.g - fishSlowColor.g)*t/5)/255;
 		const bvalue = (fishSlowColor.b + (fishFastColor.b - fishSlowColor.b)*t/5)/255;
-		this.bodyFish.material.color.setRGB(rvalue,gvalue,bvalue);
+
+		this.bodyFish.material.color.setRGB(rvalue,gvalue,gvalue);
 		this.lipsFish.material.color.setRGB(rvalue,gvalue,bvalue);
+
+		new TWEEN.Tween(this.bodyFish.material.color).to({r:rvalue,g:gvalue,b:gvalue},5000).easing(TWEEN.Easing.Back.Out).start();
+		new TWEEN.Tween(this.lipsFish.material.color).to({r:rvalue,g:gvalue,b:bvalue},1000).easing(TWEEN.Easing.Back.Out).start();
 
 	 }
 
 	 this.jump = () => {
 		this.status = "jumping";
-		let jumpHeight = 30;
+		let jumpHeight = 25;
 
-		this.body.position.setY(this.body.position.y + jumpHeight);
+		new TWEEN.Tween(this.body.position).to({y:this.body.position.y+jumpHeight},300).easing(TWEEN.Easing.Bounce.Out).start();
+		new TWEEN.Tween(this.body.scale).to({y:0.01,z:0.01},300).easing(TWEEN.Easing.Bounce.Out).start();
+		
+		new TWEEN.Tween(this.body.position).to({y:'0'},300).delay(300).easing(TWEEN.Easing.Bounce.In).start();
+		new TWEEN.Tween(this.body.scale).to({y:0.05,z:0.05},300).delay(300).easing(TWEEN.Easing.Bounce.In).start();
 	}
 	 }
 }
@@ -476,14 +494,14 @@ export class Hero extends THREE.Group {
 			this.legR.position.y = Math.max (0, - Math.sin(t) * amp);  
 			
 			this.legL.position.x =  Math.cos(t + Math.PI) * amp;
-			this.legL.position.y = Math.max (0, - Math.sin(t + Math.PI) * amp);
+			this.legL.position.y = Math.max(0, - Math.sin(t + Math.PI) * amp);
 
-			this.body.position.y = 3+ 0.5 * Math.sin(t - Math.PI/2)*amp;//
+			// this.body.position.y = 0.5 * Math.sin(t - Math.PI/2)*amp;//
 			
-			this.torso.position.y = 8 - Math.cos(  t * 2 ) * amp * .2;
-			this.torso.rotation.y = -Math.cos( t + Math.PI ) * amp * .05;
+			this.torso.position.y = 8 - Math.cos(t * 2 ) * amp * .2;
+			this.torso.rotation.y = -Math.cos(t + Math.PI ) * amp * .05;
 			
-			this.head.position.y = 21 - Math.cos(  t * 2 ) * amp * .3;
+			this.head.position.y = 21 - Math.cos( t * 2 ) * amp * .3;
 			this.head.rotation.x = Math.cos( t ) * amp * .02;
 			this.head.rotation.y =  Math.cos( t ) * amp * .01;
 		  
@@ -495,13 +513,10 @@ export class Hero extends THREE.Group {
 
 		this.jump = () => {
 			this.status = "jumping";
-			let jumpHeight = 30;
+			let jumpHeight = 15;
 
-			this.legL.rotation.x = Math.cos(-Math.PI)
-			this.legR.rotation.x = Math.cos(-Math.PI)
-			this.body.position.setY(this.body.position.y + jumpHeight);
-
-			
+			new TWEEN.Tween(this.body.position).to({y:this.body.position.y+jumpHeight},300).easing(TWEEN.Easing.Quadratic.Out).start();
+			new TWEEN.Tween(this.body.position).to({y:'0'},300).delay(300).easing(TWEEN.Easing.Quadratic.In).start()
 		  }
 	}
 }

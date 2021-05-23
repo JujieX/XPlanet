@@ -5,6 +5,7 @@ import Planet from './scene/planet';
 import PlayerControls from './scene/player';
 import PropTypes from 'prop-types';
 import {ComposerRabbit, ComposerSnake, ComposerFish} from "./scene/composer";
+import { TWEEN } from 'three/examples/jsm/libs/tween.module.min.js'
 
 import * as THREE from "three";
 
@@ -84,6 +85,7 @@ export class Scene extends Component {
             lights.animate(delta, this.scene.fog, target);
             this.renderer.render(this.scene, camera);
             this.animationFrame = requestAnimationFrame(this.animate);
+            TWEEN.update(time);
             if (composer) {
                 composer.render();
             }

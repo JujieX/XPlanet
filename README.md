@@ -1,40 +1,39 @@
 # X-Planet
-苍蝇有复眼，狗狗是色盲，鹰眼堪比高倍镜……在这一颗蓝色星球上，你可曾想过，其他物种看到的世界会是如何不同？
+Flies have compound eyes, dogs are colorblind, and an eagle’s vision is comparable to a high-powered telescope... On this blue planet, have you ever wondered how other species perceive the world differently?
 
-在X-Planet中，玩家可以操控多种动态角色，并以此为第一视角在星球上自由探索。
+In X-Planet, players can control various dynamic characters and freely explore the planet from a first-person perspective.
 
 # Demo
-### [星球入口](https://jujiex.github.io/XPlanet/)
+### [Planet Entry](https://jujiex.github.io/XPlanet/)
 
-# 探索指南
+# Exploration Guide
 
-角色切换： 数字键 1 2 3 ...
+Character Switch: Number keys 1, 2, 3...
 
-前进、后退： WASD/上下左右
+Move Forward/Backward: WASD/Arrow Keys
 
-跳跃：空格键
+Jump: Spacebar
 
-视线：鼠标
+Look Around: Mouse
 
 
-# 功能实现
+# Features
 
-### 场景搭建
-使用React + Three.js搭建三维场景，对场景元素（lights, planet, hero等）进行模块化拆分，理解ref和虚拟dom渲染并构造组件(Scene)
+### Scene
+Built the 3D scene using React and Three.js, modularized scene elements (lights, planet, hero, etc.), and utilized refs and virtual DOM rendering to construct the Scene component.
 
-### 第一人称控件
-使用射线检测（Raycaster）模拟重力制作第一人称控件（playerControls）。进入游戏界面后Pointer Lock API锁定指针，通过键盘鼠标事件模拟角色在球体表面移动、跳跃、视线变化，并绑定相机继承该父节点位置和朝向
+### First-Person Controls
+Implemented first-person controls (playerControls) using raycasting to simulate gravity. The Pointer Lock API locks the pointer upon entering the game interface, while keyboard and mouse events simulate character movement, jumping, and view changes on the planet's surface, with the camera inheriting the position and orientation of the parent node.
 
-### 星球地形
-构造buffergeometry，使用柏林噪声（perlin noise / Three.js中称为ImprovedNoise）生成随机地形，以数组材质方式赋以同一几何体多种材质。
+### Terrain
+Created buffer geometry and generated random terrain using Perlin noise (referred to as ImprovedNoise in Three.js), applying multiple materials to the same geometry via array materials.
 
-搭建树木模型并在星球上随机分布。
+Designed tree models and distributed them randomly across the planet.
 
-### 角色动画
-实现人类、兔子、小鱼等多种角色模型及相应effectComposer，并用Tween.js添加动画效果
+### Character Animation
+Implemented models and effects for various characters, such as humans, rabbits, and fish, and added animation effects using Tween.js.
 
-### 兼容性监测
-在页面初始状态下进行WebGL兼容性判断，若不兼容则弹窗提示
-
+### Compatibility Detection
+Performed WebGL compatibility checks during the page's initial state, displaying a pop-up message if compatibility issues are detected.
 
 
